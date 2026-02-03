@@ -18,5 +18,7 @@ namespace Arkitektur.Entity.Entities
         public DateTime AppointmentDate { get; set; }
 
         public string Message { get; set; }
+
+        public string Status { get; set; }
     }
 }
