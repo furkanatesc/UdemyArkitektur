@@ -36,7 +36,13 @@ namespace Arkitektur.DataAccess.Interceptors
                         false;
                 }
 
-                
+                if(entry.State is EntityState.Deleted)
+                {
+                    entry.State = EntityState.Modified; 
+                    ((BaseEntity)entry.Entity).IsDeleted = true;
+                    eventData.Context.Entry(baseEntity).Property(x => x.CreatedAt).IsModified =
+                        false;
+                }
             }
 
             return base.SavingChangesAsync(eventData, result, cancellationToken);
